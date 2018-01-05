@@ -27,5 +27,22 @@
         </dependency>
     </dependencies>
 
+    <!-- tomcat插件 -->
+    <build>
+        <plugins>
+            <!-- 配置Tomcat插件 -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8080</port>
+                    <!-- /表示把代码发布tomcat服务器根目录ROOT下  tomcat/webapps/ROOT/ -->
+                    <path>/</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
