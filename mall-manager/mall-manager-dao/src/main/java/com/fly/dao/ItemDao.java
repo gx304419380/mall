@@ -4,7 +4,9 @@ import com.fly.pojo.Item;
 import com.fly.pojo.ItemExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ItemDao {
     long countByExample(ItemExample example);
 
