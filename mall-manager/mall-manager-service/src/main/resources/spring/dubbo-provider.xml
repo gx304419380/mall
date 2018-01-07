@@ -14,30 +14,26 @@
 	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 	http://www.springframework.org/schema/util
-	http://www.springframework.org/schema/util/spring-util-4.0.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-	<!--开启扫描-->
-    <context:component-scan base-package="com.fly.controller,com.fly.service"/>
-    <!--注解驱动-->
-    <mvc:annotation-driven/>
-    <!--放行资源-->
-    <mvc:default-servlet-handler/>
-    <!--试图解析器-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
-
-    <!-- 引用服务 -->
-    <dubbo:application name="manager-web"/>
-    <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
-    <!-- 使用dubbo从Zookeeper注册中心获取服务 -->
+    <!-- 发布服务：把接口service发布Zookeeper注册中心 -->
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="manager-service"/>
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <!-- <dubbo:registry address="multicast://224.5.6.7:1234"/> -->
+    <!-- 使用dubbo通过Zookeeper协议注册服务 -->
     <dubbo:registry protocol="zookeeper" address="192.168.233.132:2181"/>
-    <!-- 引用服务 -->
-    <dubbo:reference interface="com.fly.service.ItemService"
-                     id="itemService" />
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+    <!-- 声明需要暴露的服务接口 -->
+    <!-- 创建需要发布对象-->
+    <!-- 发布服务 -->
+    <dubbo:service interface="com.fly.service.ItemService"
+                   ref="itemService" />
 
 </beans>

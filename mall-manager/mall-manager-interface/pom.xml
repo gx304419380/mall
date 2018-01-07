@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>com.fly</groupId>
-            <artifactId>mall-manager-pojo</artifactId>
+            <artifactId>mall-manager-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
