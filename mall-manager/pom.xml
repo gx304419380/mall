@@ -16,7 +16,7 @@
         <module>mall-manager-pojo</module>
         <module>mall-manager-dao</module>
         <module>mall-manager-service</module>
-        <module>mall-manager-controller</module>
+        <module>mall-manager-interface</module>
     </modules>
 
     <dependencies>
